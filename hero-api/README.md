@@ -62,4 +62,23 @@ docker compose exec -e DATABASE_URL="postgresql+psycopg://heroes:heroes@db:5432/
 docker compose exec api pytest -q
 ```
 
+## Фоновая публикация постов (Celery)
+
+Сервис может по расписанию формировать пост о герое (OpenRouter) и отправлять его в Telegram (sendMessage).
+
+ENV:
+- `REDIS_URL=redis://redis:6379/0`
+- `OPENROUTER_API_KEY=<...>`
+- `TELEGRAM_BOT_TOKEN=<...>`
+- `TELEGRAM_CHAT_ID=<...>`
+- `POST_EVERY_MINUTES=2` (интервальный запуск, например каждые 2 минуты)
+- `POST_CRON="0 9 * * *"` (UTC; альтернативно по CRON)
+
+Запуск:
+```
+docker compose up -d --build
+# worker и beat стартуют вместе
+```
+
+
 

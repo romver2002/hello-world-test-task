@@ -10,6 +10,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_started
 
   db:
     image: postgres:16
@@ -23,5 +25,27 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
+  redis:
+    image: redis:7
+    ports: ["6379:6379"]
+
+  worker:
+    build: .
+    image: hero-api:latest
+    env_file: .env
+    depends_on:
+      - redis
+      - db
+    command: celery -A app.celery_app.celery_app worker --loglevel=INFO
+
+  beat:
+    build: .
+    image: hero-api:latest
+    env_file: .env
+    depends_on:
+      - redis
+      - db
+    command: celery -A app.celery_app.celery_app beat --loglevel=INFO
 
 
