@@ -1,0 +1,32 @@
+﻿# Python bytecode and build
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments and local env files
+.venv/
+.env
+.env.*
+.python-version
+
+# Test/coverage caches
+.pytest_cache/
+.coverage*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Editors/OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local databases and artifacts
+*.db

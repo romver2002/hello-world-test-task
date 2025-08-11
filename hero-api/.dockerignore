@@ -1,0 +1,33 @@
+﻿# VCS
+.git
+.gitignore
+
+# Python cache/build
+__pycache__
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info
+.eggs
+build
+dist
+
+# Envs
+.env
+.env.*
+.venv
+
+# Tests caches
+.pytest_cache
+htmlcov
+.coverage*
+
+# Editors/OS
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# Local db
+*.db
